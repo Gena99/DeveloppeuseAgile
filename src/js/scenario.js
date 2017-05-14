@@ -35,11 +35,24 @@ function afficherPensee2(){
     //.typistAdd("\nAujourd'hui, je dois rédiger un CV.")
     .typistAdd("\nJe suis actuellement en formation à l'école du numérique régionale : Simplon Occitanie")
     .typistPause(1000)
-    .typistAdd("\nEt je me suis dit...\n si j'utilisais Scrum et l'impact mapping pour me présenter ?")
-    .typistPause(1000)
-    //.typistRemove(44)
-    //.typistAdd("Je me présente : ")
-    //.typistPause(1000)
-    ;
-    
+    .typistAdd("\nEt je me suis dit...\nSi j'utilisais l'approche Agile et l'impact mapping pour me présenter ?")
+    .typistPause(1000);
+    window.setTimeout(animerElements1, 23000);
+}
+
+function animerElements1(){
+    $('#pensee1').typistStop().fadeOut(500);
+    $('#cadrePhoto').animate( {'top': '20px', 'left': '20px'} ,1000, function(){
+        $('#informationsPersonnelles').fadeIn(500);
+    });
+    window.setTimeout(postit1, 4000);
+}
+
+function postit1(){
+    $('#postit1').fadeIn( 1000).typist({
+        speed: 12,
+        text: ''
+    })
+    .typistAdd("Comment Maximiser la valeur de mon CV ?")
+    .typistStop();
 }
