@@ -9,7 +9,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bonsai": "^0.4.2",
     "jquery": "^3.2.1",
-    "jquery.typist": "0.0.7"
+    "jquery-ui": "^1.12.1",
+    "jquery.typist": "0.0.7",
+    "snapsvg": "^0.5.1",
+    "vivus": "^0.4.0"
   }
 }
