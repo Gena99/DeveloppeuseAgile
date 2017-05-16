@@ -29,14 +29,14 @@ function afficherPensee2(){
     .on('end_pause.typist', function() {
         //console.log('End pause');
     }).typist({
-        speed: 12,
+        speed: 18,
         text: ''
     }).typistPause(1000)
-    .typistAdd("\nJe suis actuellement en formation à l'école du numérique régionale : Simplon Occitanie.")
+    .typistAdd("\nJe suis actuellement en formation à l'école régionale du numérique Simplon Occitanie.")
     .typistPause(1000)
     .typistAdd("\nEt je me suis dit...\nSi j'utilisais l'approche Agile pour me présenter ?")
     .typistPause(1000);
-    window.setTimeout(animerElements1, 23000);
+    window.setTimeout(animerElements1, 15000);
 }
 
 function animerElements1(){
@@ -45,30 +45,34 @@ function animerElements1(){
         $('#informationsPersonnelles').fadeIn(500);
         $('#ecranDroite').animate( {'backgroundColor': "rgb( 170, 170, 170 )"} ,1000);
     });
-    window.setTimeout(afficherPensee3, 4000);
+    window.setTimeout(afficherPensee3, 3000);
 }
 function afficherPensee3(){
-    $('#pensee1').text('')
-    $('#pensee1').fadeIn(500)
-    $('#pensee1').typist({
-        speed: 12,
-        text: ''
-    }).typistAdd("Commençons par regarder le résultat de la scéance d'impact mapping.")
-    .typistPause(1000)
-    .typistStop();
-    window.setTimeout(dessinerImpactMapping, 6000);
+    $('#pensee1').text("Commençons par regarder le résultat de la scéance d'impact mapping.");
+    $('#pensee1').fadeIn(500).delay(2000).fadeOut(500, function(){
+        dessinerImpactMapping();
+    });
 }
 function dessinerImpactMapping(){
     $('#pensee1').fadeOut(500);
-    new Vivus('impactMapping', {type: 'oneByOne', duration: 200, delay: 10, file: 'src/images/impactMapping1.svg'}, function(){
-        coloriserImpactMapping();
+    new Vivus('impactMapping', 
+        {type: 'oneByOne', 
+        duration: 200, 
+        delay: 10, 
+        start: 'autostart', 
+        file: 'src/images/impactMapping3.svg', 
+        onReady: function (myVivus) {
+            // `el` property is the SVG element
+            myVivus.el.setAttribute('height', '650px');
+        }}, 
+        function(){
+            coloriserImpactMapping();
     });
 }
 
 function coloriserImpactMapping(){
-    console.log('Yeap ?');
 
-    var s1 = Snap("#postit");
+    var s1 = Snap("#tableau");
     var shadow = s1.filter(Snap.filter.shadow(-10, 8, 0.3));
     var set = s1.selectAll('path', 'circle[id!="svgEditorBackground"]');
     //var p1 = s1.select("#p1");
@@ -79,23 +83,21 @@ function coloriserImpactMapping(){
         strokeWidth: 2
     });
     var t1 = s1.text(55, 50, "Objectif");
-    var t1 = s1.text(350, 20, "Maximiser" ).attr({"id":"t1", fill: "#333", "font-size": '18px', opacity: 1, "text-anchor": "middle"});
-    var t1 = s1.text(350, 45, "la valeur de").attr({"id":"t2", fill: "#333", "font-size": '18px', opacity: 1, "text-anchor": "middle"});
-    var t1 = s1.text(350, 70, "mon CV" ).attr({"id":"t3", fill: "#333", "font-size": '18px', opacity: 1, "text-anchor": "middle"});
+    var t2 = s1.text(350, 20, "Maximiser" ).attr({"id":"t1", fill: "#333", "font-size": '18px', opacity: 1, "text-anchor": "middle"});
+    var t3 = s1.text(350, 45, "la valeur de").attr({"id":"t2", fill: "#333", "font-size": '18px', opacity: 1, "text-anchor": "middle"});
+    var t4 = s1.text(350, 70, "mon CV" ).attr({"id":"t3", fill: "#333", "font-size": '18px', opacity: 1, "text-anchor": "middle"});
+    window.setTimeout(regarderObjectif, 1000);
+}
+function regarderObjectif(){
+    $('#pensee1').text("Voilà l'objectif que je me suis fixé.");
+    $('#pensee1').fadeIn(500).delay(2000).fadeOut(500, function(){
+        zoom();
+    });
 }
 
-function remplirTextesImpactMapping(){
-    console.log("on remplit les textes");
-    $('#textObjectif').typist({
-        speed: 12,
-        text: ''
-    }).typistAdd("Objectif")
-    .typistStop();
-    $('#textQui').typist({
-        speed: 12,
-        text: ''
-    }).typistAdd("Qui")
-    .typistStop();
+function zoom(){
+    var s1 = Snap("#tableau");
+    s1.animate({ viewBox: "250 0 500 200" }, 1000);    
 }
 
 function postit1(){
